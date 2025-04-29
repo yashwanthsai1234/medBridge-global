@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works - MedBridge Global</title>
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --dark: #333;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .logo span.accent {
+      color: var(--secondary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .page-header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Process Section */
+    .process {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .process-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .process-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .process-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .process-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .process-card p {
+      color: #666;
+    }
+    
+    /* Video Section */
+    .video-section {
+      padding: 80px 0;
+      background: #f5f8ff;
+      text-align: center;
+    }
+    
+    .video-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+    }
+    
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .play-button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 15px 0 15px 25px;
+      border-color: transparent transparent transparent white;
+      margin-left: 5px;
+    }
+    
+    /* Benefits Section */
+    .benefits {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .benefit-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 25px;
+      border-radius: 10px;
+      background: #f9f9f9;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .benefit-icon {
+      min-width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .benefit-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .benefit-content p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    /* Coming Soon Section */
+    .coming-soon {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .coming-soon h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .coming-soon p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .subscribe-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .subscribe-form input {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 80px 0;
+      background: #f5f8ff;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+    }
+    
+    .faq-item {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #666;
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 80px 0;
+      background: white;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #666;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .subscribe-form {
+        flex-direction: column;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="MedBridge Logo" />
+        Med<span class="accent">Bridge</span> Global
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="how-it-works.html" class="active">How It Works</a></li>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn btn-outline">Login</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>How MedBridge Global Works</h1>
+      <p>We're simplifying access to affordable healthcare products by connecting US consumers directly with verified Indian hospital suppliers.</p>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories" style="padding: 60px 0; background: white;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Popular Medication Categories</h2>
+        <p>Browse our extensive range of affordable healthcare solutions</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; margin-top: 40px;">
+        <!-- Category 1 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" fill="white" stroke="#e74c3c" stroke-width="4"/>
+            <path d="M40 20 L40 60" stroke="#e74c3c" stroke-width="4"/>
+            <path d="M20 40 L60 40" stroke="#e74c3c" stroke-width="4"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Cardio Medications</h3>
+        </div>
+        
+        <!-- Category 2 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="25" width="50" height="30" rx="5" fill="#3498db"/>
+            <rect x="25" y="20" width="30" height="10" rx="2" fill="#3498db"/>
+            <rect x="35" y="55" width="10" height="10" fill="#3498db"/>
+            <circle cx="25" cy="40" r="5" fill="white"/>
+            <circle cx="40" cy="40" r="5" fill="white"/>
+            <circle cx="55" cy="40" r="5" fill="white"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Diabetes Care</h3>
+        </div>
+        
+        <!-- Category 3 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 20 L50 20 L55 30 L55 60 L25 60 L25 30 Z" fill="#9b59b6"/>
+            <rect x="35" y="10" width="10" height="10" fill="#9b59b6"/>
+            <path d="M30 40 L50 40" stroke="white" stroke-width="2"/>
+            <path d="M30 50 L50 50" stroke="white" stroke-width="2"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Antibiotics</h3>
+        </div>
+        
+        <!-- Category 4 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="30" fill="#f1c40f"/>
+            <circle cx="40" cy="40" r="20" fill="white"/>
+            <path d="M40 25 L40 40" stroke="#f1c40f" stroke-width="5" stroke-linecap="round"/>
+            <path d="M40 40 L50 50" stroke="#f1c40f" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Pain Management</h3>
+        </div>
+        
+        <!-- Category 5 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 55 C20 35 40 15 60 35 L60 60 C60 65 55 70 50 70 L30 70 C25 70 20 65 20 60 Z" fill="#2ecc71"/>
+            <path d="M30 20 C30 15 35 10 40 10 C45 10 50 15 50 20 L50 35 L30 35 Z" fill="#2ecc71"/>
+            <path d="M35 40 L45 40" stroke="white" stroke-width="2"/>
+            <path d="M35 50 L45 50" stroke="white" stroke-width="2"/>
+            <path d="M35 60 L45 60" stroke="white" stroke-width="2"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Gastro Health</h3>
+        </div>
+        
+        <!-- Category 6 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="30" r="15" fill="#e67e22"/>
+            <rect x="20" y="45" width="40" height="25" rx="5" fill="#e67e22"/>
+            <circle cx="30" cy="55" r="5" fill="white"/>
+            <circle cx="50" cy="55" r="5" fill="white"/>
+            <path d="M35 25 L45 25" stroke="white" stroke-width="2"/>
+            <path d="M35 30 L45 30" stroke="white" stroke-width="2"/>
+            <path d="M35 35 L45 35" stroke="white" stroke-width="2"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Respiratory Care</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Process Section -->
+  <section class="process">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Simple Process</h2>
+        <p>Get the medications and medical supplies you need without the hassle and high costs.</p>
+      </div>
+      <div class="process-grid" style="grid-template-columns: repeat(4, 1fr); gap: 30px;">
+        <div class="process-card">
+          <div class="process-icon">1</div>
+          <h3>Browse & Search</h3>
+          <p>Easily find non-patented medications, equipment, and supplements through our user-friendly platform or AI assistant.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-icon">2</div>
+          <h3>Compare & Save</h3>
+          <p>See transparent pricing that's often less than your insurance copay and compare verified suppliers.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-icon">3</div>
+          <h3>Order Directly</h3>
+          <p>Place your order directly with the verified hospital supplier — no middlemen or lengthy processes.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-icon">4</div>
+          <h3>Receive & Save</h3>
+          <p>Get your healthcare products delivered to your door and enjoy the savings over traditional US healthcare costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>See How It Works</h2>
+        <p>Watch our short video to understand how MedBridge Global is transforming access to affordable healthcare.</p>
+      </div>
+      <div class="video-container">
+        <div class="video-placeholder">
+          <div class="play-button">
+            <div class="play-icon"></div>
+          </div>
+          <p>Video Coming Soon</p>
+        </div>
+        <!-- Video will be embedded here -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Benefits Section -->
+  <section class="benefits">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose MedBridge Global?</h2>
+        <p>We understand what matters most to consumers seeking affordable healthcare options.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-content">
+            <h3>Lower Than Your Copay</h3>
+            <p>Many of our products cost less than typical insurance copays, putting money back in your pocket.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-content">
+            <h3>No Extended Processes</h3>
+            <p>Skip the insurance paperwork, prior authorizations, and lengthy approval processes.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <div class="benefit-content">
+            <h3>No Insurance Needed</h3>
+            <p>Access affordable healthcare products whether you have insurance or not — everyone qualifies.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">✓</div>
+          <div class="benefit-content">
+            <h3>Verified Hospital Suppliers</h3>
+            <p>Every supplier is a verified hospital or medical distributor, ensuring product quality and safety.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-content">
+            <h3>Dynamic Pricing</h3>
+            <p>Our marketplace remains immune to US monopoly supply chains and their fluctuating prices.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🤖</div>
+          <div class="benefit-content">
+            <h3>AI-Powered Assistance</h3>
+            <p>Our intelligent chatbot helps you navigate options and find the right products without language barriers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Coming Soon Section -->
+  <section class="coming-soon">
+    <div class="container">
+      <h2>Coming Soon: Online Prescriptions</h2>
+      <p>We're expanding our platform to include online prescription services through available doctors, making it even easier to access the medications you need. Stay tuned for this exciting new feature!</p>
+      <div class="subscribe-form">
+        <input type="email" placeholder="Enter your email for updates">
+        <button class="btn btn-primary">Subscribe</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Get answers to common questions about our platform.</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is MedBridge Global a pharmacy or medication seller?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No, MedBridge Global is not a pharmacy or medication seller. We are a technology platform that facilitates connections between verified hospital suppliers in India and consumers in the US. We do not sell, store, or handle any medications or medical equipment directly.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do you ensure product quality and safety?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>All suppliers on our platform are verified hospitals or authorized medical distributors in India. These suppliers must meet our strict verification requirements and provide certification for their products. We regularly audit our supplier network to maintain quality standards.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How much can I save compared to US prices?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Savings vary by product, but many customers save 50-80% compared to US prices, even when factoring in shipping costs. In many cases, the cost is less than typical insurance copays for the same medications or equipment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long does shipping take?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Shipping times typically range from 7-14 business days, depending on the supplier and destination. Expedited shipping options are available from some suppliers for an additional fee.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is this legal?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We focus on non-patented medications, non-prescription medicines, medical equipment, and health supplements that can be legally imported for personal use. Our platform simply facilitates connections between verified suppliers and consumers, similar to other marketplace models. We recommend consulting with a healthcare professional regarding any medications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Start Saving?</h2>
+      <p>Join thousands of others who are accessing affordable healthcare products through our platform.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-primary">Browse Products</a>
+        <a href="#" class="btn btn-outline">Learn About Our Suppliers</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>MedBridge Global</h3>
+          <p style="color: #bbb; margin-bottom: 20px;">We facilitate connections between verified Indian hospital suppliers and US consumers seeking affordable healthcare products.</p>
+          <div class="social-links">
+            <a href="#"><span>f</span></a>
+            <a href="#"><span>t</span></a>
+            <a href="https://linkedin.com/in/mohit-asudani/"><span>in</span></a>
+            <a href="#"><span>ig</span></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Non-Patented Medications</a></li>
+            <li><a href="#">Non-Prescription Medicines</a></li>
+            <li><a href="#">Medical Equipment</a></li>
+            <li><a href="#">Health Supplements</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal Information</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Legal Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MedBridge Global. All rights reserved. MedBridge Global does not sell medications or medical equipment directly. We facilitate connections between verified suppliers and consumers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const plusSign = question.querySelector('span:last-child');
+          
+          if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            plusSign.textContent = '+';
+          } else {
+            answer.style.display = 'block';
+            plusSign.textContent = '-';
+          }
+        });
+      });
+      
+      // Initialize all FAQ answers to be hidden
+      document.querySelectorAll('.faq-answer').forEach(answer => {
+        answer.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Categories Section -->
+  <section class="categories" style="padding: 60px 0; background: white;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Popular Medication Categories</h2>
+        <p>Browse our extensive range of affordable healthcare solutions</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; margin-top: 40px;">
+        <!-- Category 1 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" fill="white" stroke="#e74c3c" stroke-width="4"/>
+            <path d="M40 20 L40 60" stroke="#e74c3c" stroke-width="4"/>
+            <path d="M20 40 L60 40" stroke="#e74c3c" stroke-width="4"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Cardio Medications</h3>
+        </div>
+        
+        <!-- Category 2 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="25" width="50" height="30" rx="5" fill="#3498db"/>
+            <rect x="25" y="20" width="30" height="10" rx="2" fill="#3498db"/>
+            <rect x="35" y="55" width="10" height="10" fill="#3498db"/>
+            <circle cx="25" cy="40" r="5" fill="white"/>
+            <circle cx="40" cy="40" r="5" fill="white"/>
+            <circle cx="55" cy="40" r="5" fill="white"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Diabetes Care</h3>
+        </div>
+        
+        <!-- Category 3 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 20 L50 20 L55 30 L55 60 L25 60 L25 30 Z" fill="#9b59b6"/>
+            <rect x="35" y="10" width="10" height="10" fill="#9b59b6"/>
+            <path d="M30 40 L50 40" stroke="white" stroke-width="2"/>
+            <path d="M30 50 L50 50" stroke="white" stroke-width="2"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Antibiotics</h3>
+        </div>
+        
+        <!-- Category 4 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="30" fill="#f1c40f"/>
+            <circle cx="40" cy="40" r="20" fill="white"/>
+            <path d="M40 25 L40 40" stroke="#f1c40f" stroke-width="5" stroke-linecap="round"/>
+            <path d="M40 40 L50 50" stroke="#f1c40f" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Pain Management</h3>
+        </div>
+        
+        <!-- Category 5 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 55 C20 35 40 15 60 35 L60 60 C60 65 55 70 50 70 L30 70 C25 70 20 65 20 60 Z" fill="#2ecc71"/>
+            <path d="M30 20 C30 15 35 10 40 10 C45 10 50 15 50 20 L50 35 L30 35 Z" fill="#2ecc71"/>
+            <path d="M35 40 L45 40" stroke="white" stroke-width="2"/>
+            <path d="M35 50 L45 50" stroke="white" stroke-width="2"/>
+            <path d="M35 60 L45 60" stroke="white" stroke-width="2"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Gastro Health</h3>
+        </div>
+        
+        <!-- Category 6 -->
+        <div style="text-align: center; padding: 20px; background: #f5f8ff; border-radius: 10px; transition: transform 0.3s;">
+          <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="30" r="15" fill="#e67e22"/>
+            <rect x="20" y="45" width="40" height="25" rx="5" fill="#e67e22"/>
+            <circle cx="30" cy="55" r="5" fill="white"/>
+            <circle cx="50" cy="55" r="5" fill="white"/>
+            <path d="M35 25 L45 25" stroke="white" stroke-width="2"/>
+            <path d="M35 30 L45 30" stroke="white" stroke-width="2"/>
+            <path d="M35 35 L45 35" stroke="white" stroke-width="2"/>
+          </svg>
+          <h3 style="margin-top: 15px; font-size: 16px; color: #333;">Respiratory Care</h3>
+        </div>
+      </div>
+    </div>
+  </section><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works - MedBridge Global</title>
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --dark: #333;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .logo span.accent {
+      color: var(--secondary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .page-header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Process Section */
+    .process {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .process-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .process-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .process-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .process-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .process-card p {
+      color: #666;
+    }
+    
+    /* Video Section */
+    .video-section {
+      padding: 80px 0;
+      background: #f5f8ff;
+      text-align: center;
+    }
+    
+    .video-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+    }
+    
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .play-button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 15px 0 15px 25px;
+      border-color: transparent transparent transparent white;
+      margin-left: 5px;
+    }
+    
+    /* Benefits Section */
+    .benefits {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .benefit-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 25px;
+      border-radius: 10px;
+      background: #f9f9f9;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .benefit-icon {
+      min-width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .benefit-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .benefit-content p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    /* Coming Soon Section */
+    .coming-soon {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .coming-soon h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .coming-soon p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .subscribe-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .subscribe-form input {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 80px 0;
+      background: #f5f8ff;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+    }
+    
+    .faq-item {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #666;
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 80px 0;
+      background: white;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #666;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .subscribe-form {
+        flex-direction: column;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="MedBridge Logo" />
+        Med<span class="accent">Bridge</span> Global
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="how-it-works.html" class="active">How It Works</a></li>
+          <li><a href="#">Suppliers</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn btn-outline">Login</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>How MedBridge Global Works</h1>
+      <p>We're simplifying access to affordable healthcare products by connecting US consumers directly with verified Indian hospital suppliers.</p>
+    </div>
+  </section>
+  
+  <!-- Process Section -->
+  <section class="process">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Simple Process</h2>
+        <p>Get the medications and medical supplies you need without the hassle and high costs.</p>
+      </div>
+      <div class="process-grid" style="grid-template-columns: repeat(4, 1fr); gap: 30px;">
+        <div class="process-card">
+          <div class="process-icon">1</div>
+          <h3>Browse & Search</h3>
+          <p>Easily find non-patented medications, equipment, and supplements through our user-friendly platform or AI assistant.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-icon">2</div>
+          <h3>Compare & Save</h3>
+          <p>See transparent pricing that's often less than your insurance copay and compare verified suppliers.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-icon">3</div>
+          <h3>Order Directly</h3>
+          <p>Place your order directly with the verified hospital supplier — no middlemen or lengthy processes.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-icon">4</div>
+          <h3>Receive & Save</h3>
+          <p>Get your healthcare products delivered to your door and enjoy the savings over traditional US healthcare costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>See How It Works</h2>
+        <p>Watch our short video to understand how MedBridge Global is transforming access to affordable healthcare.</p>
+      </div>
+      <div class="video-container">
+        <div class="video-placeholder">
+          <div class="play-button">
+            <div class="play-icon"></div>
+          </div>
+          <p>Video Coming Soon</p>
+        </div>
+        <!-- Video will be embedded here -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Benefits Section -->
+  <section class="benefits">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose MedBridge Global?</h2>
+        <p>We understand what matters most to consumers seeking affordable healthcare options.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-content">
+            <h3>Lower Than Your Copay</h3>
+            <p>Many of our products cost less than typical insurance copays, putting money back in your pocket.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-content">
+            <h3>No Extended Processes</h3>
+            <p>Skip the insurance paperwork, prior authorizations, and lengthy approval processes.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <div class="benefit-content">
+            <h3>No Insurance Needed</h3>
+            <p>Access affordable healthcare products whether you have insurance or not — everyone qualifies.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">✓</div>
+          <div class="benefit-content">
+            <h3>Verified Hospital Suppliers</h3>
+            <p>Every supplier is a verified hospital or medical distributor, ensuring product quality and safety.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-content">
+            <h3>Dynamic Pricing</h3>
+            <p>Our marketplace remains immune to US monopoly supply chains and their fluctuating prices.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🤖</div>
+          <div class="benefit-content">
+            <h3>AI-Powered Assistance</h3>
+            <p>Our intelligent chatbot helps you navigate options and find the right products without language barriers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Coming Soon Section -->
+  <section class="coming-soon">
+    <div class="container">
+      <h2>Coming Soon: Online Prescriptions</h2>
+      <p>We're expanding our platform to include online prescription services through available doctors, making it even easier to access the medications you need. Stay tuned for this exciting new feature!</p>
+      <div class="subscribe-form">
+        <input type="email" placeholder="Enter your email for updates">
+        <button class="btn btn-primary">Subscribe</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Get answers to common questions about our platform.</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is MedBridge Global a pharmacy or medication seller?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No, MedBridge Global is not a pharmacy or medication seller. We are a technology platform that facilitates connections between verified hospital suppliers in India and consumers in the US. We do not sell, store, or handle any medications or medical equipment directly.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do you ensure product quality and safety?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>All suppliers on our platform are verified hospitals or authorized medical distributors in India. These suppliers must meet our strict verification requirements and provide certification for their products. We regularly audit our supplier network to maintain quality standards.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How much can I save compared to US prices?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Savings vary by product, but many customers save 50-80% compared to US prices, even when factoring in shipping costs. In many cases, the cost is less than typical insurance copays for the same medications or equipment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long does shipping take?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Shipping times typically range from 7-14 business days, depending on the supplier and destination. Expedited shipping options are available from some suppliers for an additional fee.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is this legal?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We focus on non-patented medications, non-prescription medicines, medical equipment, and health supplements that can be legally imported for personal use. Our platform simply facilitates connections between verified suppliers and consumers, similar to other marketplace models. We recommend consulting with a healthcare professional regarding any medications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Start Saving?</h2>
+      <p>Join thousands of others who are accessing affordable healthcare products through our platform.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-primary">Browse Products</a>
+        <a href="#" class="btn btn-outline">Learn About Our Suppliers</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>MedBridge Global</h3>
+          <p style="color: #bbb; margin-bottom: 20px;">We facilitate connections between verified Indian hospital suppliers and US consumers seeking affordable healthcare products.</p>
+          <div class="social-links">
+            <a href="#"><span>f</span></a>
+            <a href="#"><span>t</span></a>
+            <a href="#"><span>in</span></a>
+            <a href="#"><span>ig</span></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="#">Suppliers</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Non-Patented Medications</a></li>
+            <li><a href="#">Non-Prescription Medicines</a></li>
+            <li><a href="#">Medical Equipment</a></li>
+            <li><a href="#">Health Supplements</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal Information</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Legal Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MedBridge Global. All rights reserved. MedBridge Global does not sell medications or medical equipment directly. We facilitate connections between verified suppliers and consumers.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Toggle FAQ answers
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const plusSign = question.querySelector('span:last-child');
+        
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+          plusSign.textContent = '+';
+        } else {
+          answer.style.display = 'block';
+          plusSign.textContent = '-';
+        }
+      });
+    });
+    
+    // Initialize all FAQ answers to be hidden
+    document.querySelectorAll('.faq-answer').forEach(answer => {
+      answer.style.display = 'none';
+    });
+    
+    // Video placeholder click handler (for future implementation)
+    document.querySelector('.play-button').addEventListener('

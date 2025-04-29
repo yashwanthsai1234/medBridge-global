@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - MedBridge Global</title>
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --dark: #333;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .logo span.accent {
+      color: var(--secondary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .page-header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .contact-info {
+      background: #f5f8ff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .contact-info h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .contact-details {
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .contact-icon {
+      min-width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-right: 15px;
+    }
+    
+    .contact-text h4 {
+      margin-bottom: 5px;
+      color: var(--dark);
+    }
+    
+    .contact-text p {
+      color: #666;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary-dark);
+    }
+    
+    .contact-form {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .contact-form h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    /* Locations Section */
+    .locations {
+      padding: 80px 0;
+      background: #f5f8ff;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .location-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .location-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .location-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .location-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .location-card:hover .location-image img {
+      transform: scale(1.05);
+    }
+    
+    .location-content {
+      padding: 20px;
+    }
+    
+    .location-content h3 {
+      color: var(--dark);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .location-content p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+    
+    .location-details {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+    
+    .location-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .location-icon {
+      width: 20px;
+      margin-right: 10px;
+      color: var(--primary);
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+    }
+    
+    .faq-item {
+      background: #f5f8ff;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #666;
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .footer-social a:hover {
+      background: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    .map-container {
+      height: 300px;
+      margin-top: 15px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .map {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* Media Queries */
+    @media screen and (max-width: 768px) {
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="MedBridge Logo" />
+        Med<span class="accent">Bridge</span> Global
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="suppliers.html">Suppliers</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn btn-outline">Login</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Get in touch with us for any questions, partnership opportunities, or to learn more about our services.</p>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-text">
+                <h4>Headquarters</h4>
+                <p>Los Angeles, California, USA</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>mohitasudani20@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <p>(+1) 951-899-5085</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕒</div>
+              <div class="contact-text">
+                <h4>Business Hours</h4>
+                <p>Monday to Friday: 9am - 5pm PST</p>
+                <p>Saturday: 10am - 2pm PST</p>
+              </div>
+            </div>
+          </div>
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/mohit-asudani/" target="_blank">in</a>
+            <a href="https://github.com/Mohitasudani" target="_blank">gh</a>
+            <a href="#" target="_blank">fb</a>
+            <a href="#" target="_blank">tw</a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>Send us a Message</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Locations Section -->
+  <section class="locations">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Locations</h2>
+        <p>We have offices and partner locations across the globe to serve you better.</p>
+      </div>
+      <div class="locations-grid">
+        <div class="location-card">
+          <div class="location-image">
+            <img src="/api/placeholder/400/200" alt="US Office" />
+          </div>
+          <div class="location-content">
+            <h3>United States</h3>
+            <p>Our US headquarters, handling operations for North America and managing global partnerships.</p>
+            <div class="location-details">
+              <div class="location-detail">
+                <div class="location-icon">📍</div>
+                <p>Los Angeles, California</p>
+              </div>
+              <div class="location-detail">
+                <div class="location-icon">📧</div>
+                <p>us-office@medbridge.global</p>
+              </div>
+              <div class="location-detail">
+                <div class="location-icon">📞</div>
+                <p>(+1) 951-899-5085</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-image">
+            <img src="/api/placeholder/400/200" alt="India Office" />
+          </div>
+          <div class="location-content">
+            <h3>India</h3>
+            <p>Our India office coordinates with suppliers and manages quality control for all products.</p>
+            <div class="location-details">
+              <div class="location-detail">
+                <div class="location-icon">📍</div>
+                <p>New Delhi, India</p>
+              </div>
+              <div class="location-detail">
+                <div class="location-icon">📧</div>
+                <p>india-office@medbridge.global</p>
+              </div>
+              <div class="location-detail">
+                <div class="location-icon">📞</div>
+                <p>(+91) 011-XXXX-XXXX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-image">
+            <img src="/api/placeholder/400/200" alt="Legal Office" />
+          </div>
+          <div class="location-content">
+            <h3>Legal Office</h3>
+            <p>Our legal team handles all regulatory compliance and international trade regulations.</p>
+            <div class="location-details">
+              <div class="location-detail">
+                <div class="location-icon">📍</div>
+                <p>Jaipur, Rajasthan, India</p>
+              </div>
+              <div class="location-detail">
+                <div class="location-icon">📧</div>
+                <p>legal@medbridge.global</p>
+              </div>
+              <div class="location-detail">
+                <div class="location-icon">👨‍⚖️</div>
+                <p>Rishi Sharma, Legal Advisor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Find Us</h2>
+        <p>Locate our headquarters on the map</p>
+      </div>
+      <div class="map-container">
+        <!-- Real map iframe -->
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423286.27405770525!2d-118.69192047471653!3d34.02016130653037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1680532737759!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our services.</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How can I become a registered user?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            <p>You can register on our platform by clicking the "Sign Up" button at the top of the page. Fill in the required information and verify your email address. Once registered, you'll have access to browse products, compare prices, and place orders.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I contact a supplier directly?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            <p>Once you've created an account and verified your credentials, you can browse our verified suppliers and contact them directly through our platform's messaging system. This ensures all communications are documented and secure.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            <p>We support various payment methods including credit/debit cards, bank transfers, and digital payment options. All payments are processed securely through our platform to protect both buyers and suppliers.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How are shipping and delivery handled?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            <p>Shipping is handled directly by our verified suppliers. Delivery times vary depending on the product and destination. All shipments include tracking information and meet international shipping regulations for healthcare products.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I become a supplier on your platform?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            <p>We welcome new suppliers who meet our strict verification standards. Please contact our supplier relations team at suppliers@medbridge.global to begin the verification process and learn more about joining our network.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Get Started?</h2>
+      <p>Join thousands of customers who are saving on their healthcare costs through our platform.</p>
+      <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Create Account</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>MedBridge Global</h3>
+          <p style="color: #bbb; margin-bottom: 20px;">We facilitate connections between verified Indian hospital suppliers and US consumers seeking affordable healthcare products.</p>
+          <div class="footer-social">
+            <a href="#"><span>f</span></a>
+            <a href="#"><span>t</span></a>
+            <a href="https://linkedin.com/in/mohit-asudani/"><span>in</span></a>
+            <a href="#"><span>ig</span></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Non-Patented Medications</a></li>
+            <li><a href="#">Non-Prescription Medicines</a></li>
+            <li><a href="#">Medical Equipment</a></li>
+            <li><a href="#">Health Supplements</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal Information</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Legal Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MedBridge Global. All rights reserved. MedBridge Global does not sell medications or medical equipment directly. We facilitate connections between verified suppliers and consumers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const plusSign = question.querySelector('span:last-child');
+          
+          if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            plusSign.textContent = '+';
+          } else {
+            answer.style.display = 'block';
+            plusSign.textContent = '-';
+          }
+        });
+      });
+
+      // Contact form handling
+      const contactForm = document.querySelector('.contact-form form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const formData = {
+            name: (document.getElementById('name') as HTMLInputElement).value,
+            email: (document.getElementById('email') as HTMLInputElement).value,
+            subject: (document.getElementById('subject') as HTMLInputElement).value,
+            message: (document.getElementById('message') as HTMLTextAreaElement).value
+          };
+          
+          // For now just log to console - will be replaced with API call
+          console.log('Form submitted:', formData);
+          alert('Thank you! Your message has been submitted.');
+          contactForm.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+            <li>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Suppliers - MedBridge Global</title>
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --dark: #333;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .logo span.accent {
+      color: var(--secondary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .page-header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* Intro Section */
+    .intro-section {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .intro-content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    
+    .intro-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .intro-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s;
+    }
+    
+    .intro-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    .intro-text {
+      flex: 1;
+    }
+    
+    .intro-text h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .intro-text p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    
+    /* Verification Section */
+    .verification {
+      padding: 80px 0;
+      background: #f5f8ff;
+    }
+    
+    .verification-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .verification-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .verification-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .verification-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .verification-card h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .verification-card p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    /* Suppliers Section */
+    .suppliers {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .suppliers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .supplier-card {
+      display: flex;
+      flex-direction: column;
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .supplier-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .supplier-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .supplier-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .supplier-card:hover .supplier-image img {
+      transform: scale(1.05);
+    }
+    
+    .supplier-content {
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .supplier-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .supplier-content .specialty {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    
+    .supplier-content p {
+      color: #666;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    
+    .supplier-content .btn {
+      align-self: flex-start;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 0;
+      background: #f5f8ff;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-text {
+      margin-bottom: 20px;
+      font-style: italic;
+      color: #555;
+      position: relative;
+      padding: 10px 0;
+    }
+    
+    .testimonial-text::before,
+    .testimonial-text::after {
+      content: '"';
+      font-size: 2rem;
+      color: var(--primary);
+      opacity: 0.3;
+      position: absolute;
+    }
+    
+    .testimonial-text::before {
+      top: -10px;
+      left: -10px;
+    }
+    
+    .testimonial-text::after {
+      bottom: -20px;
+      right: -10px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-info h4 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+    
+    .author-info p {
+      font-size: 0.8rem;
+      color: #666;
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    /* Badge styles */
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+    
+    .badge-primary {
+      background: rgba(30, 136, 229, 0.1);
+      color: var(--primary);
+    }
+    
+    .badge-secondary {
+      background: rgba(38, 166, 154, 0.1);
+      color: var(--secondary);
+    }
+    
+    .badge-success {
+      background: rgba(76, 175, 80, 0.1);
+      color: var(--success);
+    }
+    
+    .supplier-badges {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .intro-content {
+        flex-direction: column;
+      }
+      
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="MedBridge Logo" />
+        Med<span class="accent">Bridge</span> Global
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="suppliers.html" class="active">Suppliers</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn btn-outline">Login</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Verified Suppliers</h1>
+      <p>Meet the trusted hospital suppliers and medical distributors that provide high-quality healthcare products on our platform.</p>
+    </div>
+  </section>
+  
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-content">
+        <div class="intro-image">
+          <img src="/api/placeholder/500/400" alt="Medical Supplier Facility" />
+        </div>
+        <div class="intro-text">
+          <h3>Working with India's Best Medical Suppliers</h3>
+          <p>At MedBridge Global, we carefully select and verify each supplier on our platform to ensure they meet our rigorous standards for quality, reliability, and ethical practices.</p>
+          <p>We partner with India's leading hospital networks, pharmaceutical exporters, and medical equipment manufacturers to bring you a wide range of high-quality healthcare products at affordable prices.</p>
+          <p>Our suppliers are chosen based on their reputation, quality certifications, track record of reliability, and commitment to maintaining international standards in healthcare product manufacturing and distribution.</p>
+          <p>By connecting you directly with these verified suppliers, we eliminate unnecessary middlemen and markups, passing the savings on to you while maintaining the highest quality standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Verification Section -->
+  <section class="verification">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Verification Process</h2>
+        <p>How we ensure the quality and legitimacy of every supplier on our platform.</p>
+      </div>
+      <div class="verification-grid">
+        <div class="verification-card">
+          <div class="verification-icon">📋</div>
+          <h3>Documentation Review</h3>
+          <p>We thoroughly review each supplier's business licenses, quality certifications, and regulatory compliance documentation to ensure they meet all legal requirements.</p>
+        </div>
+        <div class="verification-card">
+          <div class="verification-icon">🔍</div>
+          <h3>On-Site Inspection</h3>
+          <p>Our team conducts in-person visits to supplier facilities to verify their operations, quality control processes, and storage conditions meet our standards.</p>
+        </div>
+        <div class="verification-card">
+          <div class="verification-icon">🧪</div>
+          <h3>Product Testing</h3>
+          <p>We regularly test product samples from our suppliers to ensure they meet quality specifications and safety standards.</p>
+        </div>
+        <div class="verification-card">
+          <div class="verification-icon">👥</div>
+          <h3>Customer Feedback</h3>
+          <p>We continuously monitor customer feedback and reviews for each supplier, addressing any concerns promptly and maintaining high satisfaction standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Suppliers Section -->
+  <section class="suppliers">
+    <div class="container">
+      <div class="section-title">
+        <h2>Meet Our Suppliers</h2>
+        <p>Explore our network of verified hospital suppliers and medical distributors.</p>
+      </div>
+      <div class="suppliers-grid">
+        <div class="supplier-card">
+          <div class="supplier-image" style="display: flex; align-items: center; justify-content: center; background: white;">
+            <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="white"/>
+              <path d="M50 40 L100 40 L100 110 L50 110 Z" fill="#006cb7"/>
+              <path d="M110 40 L200 40 L200 50 L110 50 Z" fill="#006cb7"/>
+              <path d="M110 70 L200 70 L200 80 L110 80 Z" fill="#006cb7"/>
+              <path d="M110 100 L200 100 L200 110 L110 110 Z" fill="#006cb7"/>
+              <text x="110" y="65" fill="#006cb7" font-family="Arial" font-weight="bold" font-size="16">APOLLO</text>
+              <text x="110" y="95" fill="#27ae60" font-family="Arial" font-weight="bold" font-size="16">HOSPITALS</text>
+              <circle cx="75" cy="75" r="25" fill="white"/>
+              <path d="M65 65 L85 65 L85 85 L65 85 Z" fill="#006cb7"/>
+              <path d="M75 55 L75 95" stroke="#006cb7" stroke-width="3"/>
+              <path d="M55 75 L95 75" stroke="#006cb7" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="supplier-content">
+            <h3>Apollo Hospitals</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Hospital Network</span>
+              <span class="badge badge-secondary">Pharmaceutical</span>
+              <span class="badge badge-success">Diagnostic</span>
+            </div>
+            <p>India's largest private hospital chain with a network of 71 owned and managed hospitals. They also operate pharmacies, primary care and diagnostic centers, telehealth clinics, and digital healthcare services. Apollo Hospitals has been a pioneer in corporate healthcare in India and has received international healthcare accreditations.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-image" style="display: flex; align-items: center; justify-content: center; background: white;">
+            <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="white"/>
+              <path d="M50 60 L90 60 L90 90 L50 90 Z" fill="#0054a6"/>
+              <path d="M100 60 L140 60 L140 70 L100 70 Z" fill="#0054a6"/>
+              <path d="M100 75 L140 75 L140 85 L100 85 Z" fill="#0054a6"/>
+              <path d="M150 60 L250 60 L250 90 L150 90 Z" fill="#0054a6"/>
+              <text x="70" y="120" fill="#0054a6" font-family="Arial" font-weight="bold" font-size="14">FORTIS HEALTHCARE</text>
+              <text x="167" y="78" fill="white" font-family="Arial" font-weight="bold" font-size="14">FORTIS</text>
+            </svg>
+          </div>
+          <div class="supplier-content">
+            <h3>Fortis Healthcare</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Hospital Network</span>
+              <span class="badge badge-secondary">Research</span>
+              <span class="badge badge-success">Smart Hospital</span>
+            </div>
+            <p>A prominent private hospital network in India, operating 36 healthcare facilities across the country. Their flagship facility, Fortis Memorial Research Institute (FMRI) in Gurgaon, has been recognized as a "smart hospital" globally. Fortis Healthcare offers a range of services, including hospitals, pharmacies, and diagnostic centers.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-image" style="display: flex; align-items: center; justify-content: center; background: white;">
+            <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="white"/>
+              <circle cx="80" cy="75" r="30" fill="#27ae60"/>
+              <text x="80" y="80" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="15">MS</text>
+              <text x="140" y="70" fill="#27ae60" font-family="Arial" font-weight="bold" font-size="22">MEDI</text>
+              <text x="195" y="70" fill="#333" font-family="Arial" font-weight="bold" font-size="22">SELLER</text>
+              <text x="150" y="90" fill="#666" font-family="Arial" font-size="14">Pharmaceutical Exporter</text>
+              <rect x="50" y="100" width="200" height="2" fill="#27ae60"/>
+            </svg>
+          </div>
+          <div class="supplier-content">
+            <h3>Mediseller</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Pharmaceutical Exporter</span>
+              <span class="badge badge-secondary">Supplier</span>
+            </div>
+            <p>A verified supplier specializing in pharmaceutical products, including a wide range of medicines and supplements, known to supply major hospitals. Mediseller has established a reputation for reliability and quality in pharmaceutical exports to multiple countries.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-image" style="display: flex; align-items: center; justify-content: center; background: white;">
+            <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="white"/>
+              <circle cx="75" cy="75" r="25" fill="#9b59b6"/>
+              <path d="M65 75 L85 75" stroke="white" stroke-width="2"/>
+              <path d="M75 65 L75 85" stroke="white" stroke-width="2"/>
+              <text x="110" y="65" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="16">HEALTH</text>
+              <text x="110" y="85" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="16">BIOTECH</text>
+              <text x="110" y="105" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="16">LIMITED</text>
+              <rect x="50" y="115" width="200" height="2" fill="#9b59b6"/>
+              <text x="150" y="135" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">EST. 2001 | CHANDIGARH</text>
+            </svg>
+          </div>
+          <div class="supplier-content">
+            <h3>Health Biotech Limited</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Supplements</span>
+              <span class="badge badge-secondary">Pharmaceuticals</span>
+            </div>
+            <p>A pharmaceutical company located in Chandigarh, known for manufacturing and supplying pharmaceutical formulations, including supplements. Health Biotech Limited has developed a wide range of health supplements with high-quality ingredients and rigorous testing protocols.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-image" style="display: flex; align-items: center; justify-content: center; background: white;">
+            <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="white"/>
+              <path d="M80 50 L120 50 L150 75 L120 100 L80 100 L50 75 Z" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+              <text x="100" y="80" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="16">AM</text>
+              <text x="190" y="65" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="18">ALLIED</text>
+              <text x="190" y="85" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="18">MEDICAL</text>
+              <text x="190" y="105" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="18">LTD</text>
+              <text x="150" y="125" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Medical Equipment Specialists</text>
+            </svg>
+          </div>
+          <div class="supplier-content">
+            <h3>Allied Medical Ltd.</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Medical Equipment</span>
+              <span class="badge badge-secondary">Devices</span>
+            </div>
+            <p>Specializes in anesthesia machines, ICU ventilators, and infusion pumps. They are a trusted supplier to many hospitals. Allied Medical Ltd. has established a reputation for manufacturing reliable medical equipment that meets international quality standards.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div><text x="110" y="65" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="16">HEALTH</text>
+              <text x="110" y="85" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="16">BIOTECH</text>
+              <text x="110" y="105" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="16">LIMITED</text>
+              <rect x="50" y="115" width="200" height="2" fill="#9b59b6"/>
+              <text x="150" y="135" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">EST. 2001 | CHANDIGARH</text>
+            </svg>
+          </div>
+          <div class="supplier-content">
+            <h3>Health Biotech Limited</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Supplements</span>
+              <span class="badge badge-secondary">Pharmaceuticals</span>
+            </div>
+            <p>A pharmaceutical company located in Chandigarh, known for manufacturing and supplying pharmaceutical formulations, including supplements. Health Biotech Limited has developed a wide range of health supplements with high-quality ingredients and rigorous testing protocols.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-image" style="display: flex; align-items: center; justify-content: center; background: white;">
+            <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="white"/>
+              <path d="M80 50 L120 50 L150 75 L120 100 L80 100 L50 75 Z" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+              <text x="100" y="80" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="16">AM</text>
+              <text x="190" y="65" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="18">ALLIED</text>
+              <text x="190" y="85" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="18">MEDICAL</text>
+              <text x="190" y="105" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="18">LTD</text>
+              <text x="150" y="125" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">Medical Equipment Specialists</text>
+            </svg>
+          </div>
+          </div>
+          <div class="supplier-content">
+            <h3>Allied Medical Ltd.</h3>
+            <div class="supplier-badges">
+              <span class="badge badge-primary">Medical Equipment</span>
+              <span class="badge badge-secondary">Devices</span>
+            </div>
+            <p>Specializes in anesthesia machines, ICU ventilators, and infusion pumps. They are a trusted supplier to many hospitals. Allied Medical Ltd. has established a reputation for manufacturing reliable medical equipment that meets international quality standards.</p>
+            <a href="#" class="btn btn-outline">View Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Supplier Testimonials</h2>
+        <p>Hear what our suppliers have to say about working with MedBridge Global.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Partnering with MedBridge Global has allowed us to expand our reach to the US market efficiently. Their verification process is thorough and gives consumers confidence in our products. We've seen a significant increase in international orders through this platform."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/50/50" alt="Dr. Ramesh Kumar" />
+            </div>
+            <div class="author-info">
+              <h4>Dr. Ramesh Kumar</h4>
+              <p>Head of International Relations, Apollo Hospitals</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "The MedBridge platform provides a transparent and efficient way for us to connect with US consumers. Their commitment to quality aligns perfectly with our standards, making this a valuable partnership for expanding our global footprint."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/50/50" alt="Priya Sharma" />
+            </div>
+            <div class="author-info">
+              <h4>Priya Sharma</h4>
+              <p>Export Manager, Health Biotech Limited</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "As a medical equipment manufacturer, we appreciate MedBridge Global's focus on quality and verification. Their platform has made it easier for us to reach healthcare consumers in the US while maintaining full transparency about our products and pricing."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="/api/placeholder/50/50" alt="Vikram Mehta" />
+            </div>
+            <div class="author-info">
+              <h4>Vikram Mehta</h4>
+              <p>Director, Allied Medical Ltd.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Become a Verified Supplier</h2>
+      <p>Are you a hospital, pharmaceutical distributor, or medical equipment manufacturer interested in joining our platform? Contact us to learn more about our verification process.</p>
+      <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Apply Now</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>MedBridge Global</h3>
+          <p style="color: #bbb; margin-bottom: 20px;">We facilitate connections between verified Indian hospital suppliers and US consumers seeking affordable healthcare products.</p>
+          <div class="social-links">
+            <a href="#"><span>f</span></a>
+            <a href="#"><span>t</span></a>
+            <a href="#"><span>in</span></a>
+            <a href="#"><span>ig</span></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Non-Patented Medications</a></li>
+            <li><a href="#">Non-Prescription Medicines</a></li>
+            <li><a href="#">Medical Equipment</a></li>
+            <li><a href="#">Health Supplements</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal Information</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Legal Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MedBridge Global. All rights reserved. MedBridge Global does not sell medications or medical equipment directly. We facilitate connections between verified suppliers and consumers.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

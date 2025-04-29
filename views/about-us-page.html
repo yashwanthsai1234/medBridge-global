@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - MedBridge Global</title>
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #26a69a;
+      --light: #f5f5f5;
+      --dark: #333;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .logo span.accent {
+      color: var(--secondary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .page-header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* About Section */
+    .about-section {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .about-content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s;
+    }
+    
+    .about-image:hover img {
+      transform: scale(1.03);
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-text h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .about-text p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    
+    /* Mission Section */
+    .mission {
+      padding: 80px 0;
+      background: #f5f8ff;
+      text-align: center;
+    }
+    
+    .mission-cards {
+      display: flex;
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .mission-card {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .mission-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .mission-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .mission-card h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+      font-size: 1.3rem;
+    }
+    
+    .mission-card p {
+      color: #666;
+    }
+    
+    /* Team Section */
+    .team {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .team-member {
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+    
+    .member-image {
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .member-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .team-member:hover .member-image img {
+      transform: scale(1.05);
+    }
+    
+    .member-info {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .member-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: var(--dark);
+    }
+    
+    .member-info p.role {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .member-info p.bio {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .social-icons a {
+      width: 35px;
+      height: 35px;
+      background: #eee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    /* Partners Section */
+    .partners {
+      padding: 80px 0;
+      background: #f5f8ff;
+      text-align: center;
+    }
+    
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+      align-items: center;
+    }
+    
+    .partner {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .partner:hover {
+      transform: translateY(-5px);
+    }
+    
+    .partner img {
+      max-width: 100%;
+      height: auto;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+    
+    .partner:hover img {
+      filter: grayscale(0%);
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .mission-cards {
+        flex-direction: column;
+      }
+      
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="MedBridge Logo" />
+        Med<span class="accent">Bridge</span> Global
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="#">Suppliers</a></li>
+          <li><a href="about-us.html" class="active">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn btn-outline">Login</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>About MedBridge Global</h1>
+      <p>Meet the team behind our mission to make healthcare more affordable and accessible.</p>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image">
+          <img src="/api/placeholder/500/400" alt="MedBridge Global Headquarters" />
+        </div>
+        <div class="about-text">
+          <h3>Our Story</h3>
+          <p>MedBridge Global was founded with a simple yet powerful vision: to bridge the gap between affordable healthcare products in India and the needs of consumers in the United States.</p>
+          <p>Born from firsthand experiences with the high costs of healthcare in the US, our founders recognized that many life-saving medications and medical equipment were available at a fraction of the cost in countries like India, where a robust healthcare manufacturing ecosystem exists with high-quality standards.</p>
+          <p>Instead of accepting the status quo of expensive healthcare, we built a platform that leverages technology to connect verified Indian hospital suppliers directly with US consumers, eliminating unnecessary middlemen and reducing costs significantly.</p>
+          <p>Today, we're proud to be helping thousands of Americans access the healthcare products they need at prices they can afford, while maintaining the highest standards of quality and transparency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Mission Section -->
+  <section class="mission">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Mission & Values</h2>
+        <p>At MedBridge Global, we're guided by a set of core principles that drive everything we do.</p>
+      </div>
+      <div class="mission-cards">
+        <div class="mission-card">
+          <div class="mission-icon">🎯</div>
+          <h3>Our Mission</h3>
+          <p>To democratize access to affordable healthcare products by connecting verified suppliers with consumers across borders, creating a more equitable healthcare ecosystem for all.</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">👁️</div>
+          <h3>Our Vision</h3>
+          <p>A world where quality healthcare products are accessible and affordable to everyone, regardless of their location or economic status.</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">💎</div>
+          <h3>Our Values</h3>
+          <p>Transparency, Quality, Affordability, and Trust guide every decision we make. We believe these principles are essential to creating a healthcare marketplace that truly serves people's needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Team Section -->
+  <section class="team">
+    <div class="container">
+      <div class="section-title">
+        <h2>Meet Our Team</h2>
+        <p>The passionate individuals behind MedBridge Global working to transform healthcare accessibility.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-image">
+            <img src="/api/placeholder/300/300" alt="Mohit Asudani" />
+          </div>
+          <div class="member-info">
+            <h3>Mohit Asudani</h3>
+            <p class="role">Founder & CTO</p>
+            <p class="bio">AI/ML Engineer with expertise in computer vision and generative AI. MSc in Computer Science from UC Riverside with experience developing innovative tech solutions at Supereonedge and multiple research institutions.</p>
+            <div class="social-icons">
+              <a href="https://linkedin.com/in/mohit-asudani/" target="_blank">in</a>
+              <a href="https://github.com/Mohitasudani" target="_blank">gh</a>
+              <a href="mailto:mohitasudani20@gmail.com">@</a>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="member-image">
+            <img src="/api/placeholder/300/300" alt="Rishi Sharma" />
+          </div>
+          <div class="member-info">
+            <h3>Rishi Sharma</h3>
+            <p class="role">Legal Advisor</p>
+            <p class="bio">Experienced legal professional currently serving at the Rajasthan High Court with previous experience at the Delhi High Court. Specializes in international commerce and healthcare regulatory frameworks.</p>
+            <div class="social-icons">
+              <a href="#" target="_blank">in</a>
+              <a href="#" target="_blank">tw</a>
+              <a href="#" target="_blank">@</a>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="member-image">
+            <img src="/api/placeholder/300/300" alt="Sarah Miller" />
+          </div>
+          <div class="member-info">
+            <h3>Sarah Miller</h3>
+            <p class="role">Operations Director</p>
+            <p class="bio">Former healthcare administrator with 10+ years of experience in supply chain management and international logistics. Expert in ensuring smooth operations between suppliers and consumers.</p>
+            <div class="social-icons">
+              <a href="#" target="_blank">in</a>
+              <a href="#" target="_blank">tw</a>
+              <a href="#" target="_blank">@</a>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="member-image">
+            <img src="/api/placeholder/300/300" alt="Dr. Priya Patel" />
+          </div>
+          <div class="member-info">
+            <h3>Dr. Priya Patel</h3>
+            <p class="role">Medical Advisor</p>
+            <p class="bio">Board-certified physician with experience practicing in both India and the US. Provides crucial insights on medical product selection and quality verification processes.</p>
+            <div class="social-icons">
+              <a href="#" target="_blank">in</a>
+              <a href="#" target="_blank">tw</a>
+              <a href="#" target="_blank">@</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Partners Section -->
+  <section class="partners">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Hospital Partners</h2>
+        <p>We work with leading hospital networks and medical suppliers in India to bring quality healthcare products to the US.</p>
+      </div>
+      <div class="partners-grid">
+        <div class="partner" style="display: flex; align-items: center; justify-content: center; height: 80px;">
+          <svg width="120" height="60" viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="white"/>
+            <path d="M35 25 L60 25 L60 55 L35 55 Z" fill="#006cb7"/>
+            <path d="M65 25 L115 25 L115 30 L65 30 Z" fill="#006cb7"/>
+            <path d="M65 37 L115 37 L115 42 L65 42 Z" fill="#006cb7"/>
+            <path d="M65 49 L115 49 L115 54 L65 54 Z" fill="#006cb7"/>
+            <text x="65" y="35" fill="#006cb7" font-family="Arial" font-weight="bold" font-size="8">APOLLO</text>
+            <text x="65" y="47" fill="#27ae60" font-family="Arial" font-weight="bold" font-size="8">HOSPITALS</text>
+            <circle cx="47" cy="40" r="10" fill="white"/>
+            <path d="M42 40 L52 40 L52 45 L42 45 Z" fill="#006cb7"/>
+            <path d="M47 35 L47 50" stroke="#006cb7" stroke-width="1.5"/>
+            <path d="M37 40 L57 40" stroke="#006cb7" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="partner" style="display: flex; align-items: center; justify-content: center; height: 80px;">
+          <svg width="120" height="60" viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="white"/>
+            <path d="M30 30 L50 30 L50 45 L30 45 Z" fill="#0054a6"/>
+            <path d="M55 30 L75 30 L75 35 L55 35 Z" fill="#0054a6"/>
+            <path d="M55 38 L75 38 L75 43 L55 43 Z" fill="#0054a6"/>
+            <path d="M80 30 L130 30 L130 45 L80 45 Z" fill="#0054a6"/>
+            <text x="40" y="60" fill="#0054a6" font-family="Arial" font-weight="bold" font-size="7">FORTIS HEALTHCARE</text>
+            <text x="95" y="39" fill="white" font-family="Arial" font-weight="bold" font-size="7">FORTIS</text>
+          </svg>
+        </div>
+        <div class="partner" style="display: flex; align-items: center; justify-content: center; height: 80px;">
+          <svg width="120" height="60" viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="white"/>
+            <circle cx="40" cy="40" r="15" fill="#27ae60"/>
+            <text x="40" y="43" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="8">MS</text>
+            <text x="70" y="35" fill="#27ae60" font-family="Arial" font-weight="bold" font-size="11">MEDI</text>
+            <text x="100" y="35" fill="#333" font-family="Arial" font-weight="bold" font-size="11">SELLER</text>
+            <text x="75" y="45" fill="#666" font-family="Arial" font-size="7">Pharmaceutical Exporter</text>
+            <rect x="25" y="50" width="100" height="1" fill="#27ae60"/>
+          </svg>
+        </div>
+        <div class="partner" style="display: flex; align-items: center; justify-content: center; height: 80px;">
+          <svg width="120" height="60" viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="white"/>
+            <circle cx="37" cy="40" r="12" fill="#9b59b6"/>
+            <path d="M32 40 L42 40" stroke="white" stroke-width="1"/>
+            <path d="M37 35 L37 45" stroke="white" stroke-width="1"/>
+            <text x="55" y="33" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="8">HEALTH</text>
+            <text x="55" y="43" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="8">BIOTECH</text>
+            <text x="55" y="53" fill="#9b59b6" font-family="Arial" font-weight="bold" font-size="8">LIMITED</text>
+            <rect x="25" y="58" width="100" height="1" fill="#9b59b6"/>
+            <text x="75" y="68" text-anchor="middle" fill="#666" font-family="Arial" font-size="6">EST. 2001 | CHANDIGARH</text>
+          </svg>
+        </div>
+        <div class="partner" style="display: flex; align-items: center; justify-content: center; height: 80px;">
+          <svg width="120" height="60" viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="white"/>
+            <path d="M40 25 L60 25 L75 40 L60 55 L40 55 L25 40 Z" fill="#e74c3c" stroke="#c0392b" stroke-width="1"/>
+            <text x="50" y="43" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="8">AM</text>
+            <text x="95" y="33" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="9">ALLIED</text>
+            <text x="95" y="43" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="9">MEDICAL</text>
+            <text x="95" y="53" fill="#e74c3c" font-family="Arial" font-weight="bold" font-size="9">LTD</text>
+            <text x="75" y="63" text-anchor="middle" fill="#666" font-family="Arial" font-size="6">Medical Equipment Specialists</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Join Our Mission</h2>
+      <p>Help us make quality healthcare products accessible and affordable for everyone.</p>
+      <a href="#" class="btn btn-outline" style="color: white; border-color: white;">Contact Us</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>MedBridge Global</h3>
+          <p style="color: #bbb; margin-bottom: 20px;">We facilitate connections between verified Indian hospital suppliers and US consumers seeking affordable healthcare products.</p>
+          <div class="social-links">
+            <a href="#"><span>f</span></a>
+            <a href="#"><span>t</span></a>
+            <a href="#"><span>in</span></a>
+            <a href="#"><span>ig</span></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="#">Suppliers</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="#">Non-Patented Medications</a></li>
+            <li><a href="#">Non-Prescription Medicines</a></li>
+            <li><a href="#">Medical Equipment</a></li>
+            <li><a href="#">Health Supplements</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal Information</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Legal Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MedBridge Global. All rights reserved. MedBridge Global does not sell medications or medical equipment directly. We facilitate connections between verified suppliers and consumers.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
