@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
 const router = Router();
+const JWT_SECRET = process.env.JWT_SECRET!;
 
 // POST /api/auth/register
 router.post(
@@ -26,15 +27,11 @@ router.post(
     user.password = await bcrypt.hash(password, salt);
     await user.save();
 
-    // Build JWT payload
+    // Build JWT payload and sign token
     const payload = { user: { id: user.id, role: user.role } };
-    const secret = process.env.JWT_SECRET || 'defaultsecret';
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' });
 
-    // Sign token and respond
-    jwt.sign(payload, secret, { expiresIn: '1d' }, (err, token) => {
-      if (err) throw err;
-      res.json({ success: true, token });
-    });
+    res.json({ success: true, token });
   })
 );
 
@@ -58,14 +55,11 @@ router.post(
       return;
     }
 
-    // Build and sign JWT
+    // Build JWT payload and sign token
     const payload = { user: { id: user.id, role: user.role } };
-    const secret = process.env.JWT_SECRET || 'defaultsecret';
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1d' });
 
-    jwt.sign(payload, secret, { expiresIn: '1d' }, (err, token) => {
-      if (err) throw err;
-      res.json({ success: true, token });
-    });
+    res.json({ success: true, token });
   })
 );
 
